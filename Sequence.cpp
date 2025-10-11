@@ -57,12 +57,30 @@ Sequence::Sequence(size_t size) {
 //    Parameters: s (Sequence&)
 //-----------------------------------------------------------
 Sequence::Sequence(const Sequence& s){
-    SequenceNode* current = s.head;
 
-    while (current->next != nullptr) {
+    SequenceNode* current;
+    SequenceNode* temp;
+
+
+    current = s.head;
+    temp = s.head;
+
+    SequenceNode* newNode = new SequenceNode(temp->item);
+    head = newNode;
+    current = newNode;
+    sizeOfSequence++;
+    temp = temp->next;
+    while (temp != nullptr) {
+        SequenceNode* newNodeB = new SequenceNode(temp->item);
+        current -> next = newNodeB;
+        newNodeB -> prev = current;
         current = current->next;
-        push_back(current->item);
+        current->next = nullptr;
+        temp = temp->next;
+        tail = newNodeB;
+        sizeOfSequence++;
     }
+
 }
 //----------------------------------------------------------------
 // ~Sequence: the destructor to call the clear function to empty the list
