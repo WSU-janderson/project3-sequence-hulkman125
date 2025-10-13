@@ -96,14 +96,9 @@ Sequence::~Sequence() {
 //    Parameters: s (Sequence&)
 //-----------------------------------------------------------
 Sequence& Sequence::operator=(const Sequence& s) {
-    SequenceNode* current = head;
-    SequenceNode* temp = head;
-    SequenceNode* disNode;
-    while (current != nullptr) {
-        current = current->next;
-        delete temp;
-        temp = current;
-    }
+     clear();
+    SequenceNode* current;
+    SequenceNode* temp;
     sizeOfSequence = 0;
 
     current = s.head;
